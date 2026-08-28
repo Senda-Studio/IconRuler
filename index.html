@@ -3,11 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IconRuler — Generador de Favicons e Íconos</title>
+
+    <title>IconRuler — Generador de Favicons e Íconos para tu Sitio</title>
     <meta
       name="description"
-      content="Subí un logo y descargá al instante todos los favicons, apple-touch-icon y manifest que necesita tu sitio."
+      content="Subí un logo en PNG y descargá al instante favicon.ico, apple-touch-icon, íconos de Android y el site.webmanifest listos para tu sitio. 100% en el navegador, sin subir tu imagen a ningún servidor."
     />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Senda Studio" />
+    <link rel="canonical" href="https://iconruler.sendastudio.com.ar/" />
+    <meta name="theme-color" content="#0a2140" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="iconruler" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:url" content="https://iconruler.sendastudio.com.ar/" />
+    <meta
+      property="og:title"
+      content="iconruler — generador de favicons e íconos para tu sitio"
+    />
+    <meta
+      property="og:description"
+      content="Subí un logo en PNG y descargá al instante todos los íconos y el manifest que necesita tu sitio. Sin instalar nada, sin backend."
+    />
+    <meta
+      property="og:image"
+      content="https://iconruler.sendastudio.com.ar/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="iconruler — generador de favicons e íconos"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="iconruler — generador de favicons e íconos para tu sitio"
+    />
+    <meta
+      name="twitter:description"
+      content="Subí un logo en PNG y descargá al instante todos los íconos y el manifest que necesita tu sitio."
+    />
+    <meta
+      name="twitter:image"
+      content="https://iconruler.sendastudio.com.ar/og-image.png"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,6 +64,29 @@
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a2140'/%3E%3Crect x='10' y='10' width='80' height='80' rx='10' fill='none' stroke='%23f4a261' stroke-width='6' stroke-dasharray='10 8'/%3E%3C/svg%3E"
     />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "iconruler",
+        "url": "https://iconruler.sendastudio.com.ar/",
+        "description": "Generador de favicons, apple-touch-icon, íconos de Android y site.webmanifest a partir de un logo PNG. Procesa todo en el navegador, sin subir la imagen a un servidor.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "Senda Studio",
+          "url": "https://sendastudio.com.ar"
+        }
+      }
+    </script>
   </head>
   <body>
     <div class="grid-overlay" aria-hidden="true"></div>
@@ -166,6 +234,32 @@
     <footer class="footer">
       <span>iconruler</span><span class="footer__sep">·</span
       ><span>procesamiento 100% local</span>
+    </footer>
+
+    <footer class="agency-footer">
+      <a
+        class="agency-footer__link"
+        href="https://sendastudio.com.ar"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Un proyecto de <strong>Senda Studio</strong> — ir a sendastudio.com.ar
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M3 9L9 3M9 3H4M9 3V8"
+            stroke="currentColor"
+            stroke-width="1.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
