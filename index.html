@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IconRuler — Generador de Favicons e Íconos</title>
+    <meta
+      name="description"
+      content="Subí un logo y descargá al instante todos los favicons, apple-touch-icon y manifest que necesita tu sitio."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230a2140'/%3E%3Crect x='10' y='10' width='80' height='80' rx='10' fill='none' stroke='%23f4a261' stroke-width='6' stroke-dasharray='10 8'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <div class="grid-overlay" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="topbar__mark">
+        <span class="topbar__bracket">[</span>iconruler<span
+          class="topbar__bracket"
+          >]</span
+        >
+      </div>
+      <div class="topbar__status" id="topbarStatus">
+        <span class="dot"></span> listo
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO: la regla graduada es la tesis visual de la página -->
+      <section class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">01 — herramienta de un solo uso</p>
+          <h1>Subí un logo.<br />Salí con <em>todo</em> el kit de íconos.</h1>
+          <p class="lead">
+            Arrastrá tu <code>.png</code> y esta página corta, en tu navegador,
+            cada tamaño que un sitio necesita para verse bien en pestañas,
+            celulares e íconos de inicio. Sin Photoshop, sin subir nada a un
+            servidor.
+          </p>
+          <ul
+            class="specsheet"
+            id="specsheet"
+            aria-label="Tamaños que se generan"
+          >
+            <!-- se completa con JS a partir de ICON_SPECS -->
+          </ul>
+        </div>
+
+        <div class="hero__instrument">
+          <div
+            class="dropzone"
+            id="dropzone"
+            tabindex="0"
+            role="button"
+            aria-label="Soltar o seleccionar imagen PNG"
+          >
+            <input type="file" id="fileInput" accept="image/png" hidden />
+
+            <div class="dropzone__ruler" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="dropzone__body" id="dropzoneBody">
+              <svg
+                class="dropzone__icon"
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+              >
+                <rect
+                  x="4"
+                  y="4"
+                  width="32"
+                  height="32"
+                  rx="3"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-dasharray="4 3"
+                />
+                <path
+                  d="M20 12v14M14 20l6 6 6-6"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <p class="dropzone__title">Soltá tu logo acá</p>
+              <p class="dropzone__hint">
+                .png · cualquier resolución · idealmente cuadrado
+              </p>
+              <button type="button" class="btn btn--ghost" id="browseBtn">
+                o elegí un archivo
+              </button>
+            </div>
+
+            <div class="dropzone__preview" id="dropzonePreview" hidden>
+              <img id="previewImg" alt="Vista previa del logo cargado" />
+              <p class="dropzone__filename" id="previewFilename"></p>
+            </div>
+
+            <div class="spinner-overlay" id="spinnerOverlay">
+              <div class="spinner" aria-hidden="true"></div>
+              <p id="spinnerLabel">procesando…</p>
+            </div>
+          </div>
+          <p class="hero__note" id="errorNote" role="alert" hidden></p>
+        </div>
+      </section>
+
+      <!-- RESULTADOS -->
+      <section class="results" id="resultsSection" hidden>
+        <div class="results__head">
+          <p class="eyebrow">02 — resultado</p>
+          <h2>Tu kit está listo</h2>
+          <div class="results__actions">
+            <button type="button" class="btn btn--accent" id="downloadAllBtn">
+              Descargar todo (.zip)
+            </button>
+            <button type="button" class="btn btn--ghost" id="copySnippetBtn">
+              Copiar &lt;head&gt; snippet
+            </button>
+            <button type="button" class="btn btn--text" id="resetBtn">
+              probar con otro logo
+            </button>
+          </div>
+        </div>
+
+        <div class="results__grid" id="resultsGrid">
+          <!-- tarjetas de icono generadas por JS -->
+        </div>
+
+        <details class="snippet-box">
+          <summary>Ver snippet HTML para el &lt;head&gt;</summary>
+          <pre id="snippetCode"></pre>
+        </details>
+      </section>
+
+      <section class="about">
+        <p class="eyebrow">03 — por qué existe</p>
+        <p>
+          Cada navegador y sistema operativo pide el ícono de un sitio en un
+          tamaño distinto: la pestaña quiere 16 y 32px, un iPhone que agrega el
+          sitio a inicio quiere 180px, Android quiere 192 y 512px, y los
+          rastreadores más viejos todavía buscan
+          <code>/favicon.ico</code> a mano. Esta página genera las seis
+          versiones a la vez, con el mismo logo, sin distorsión y sin depender
+          de un servicio externo que guarde tu imagen. Todo el recorte y
+          escalado corre en tu navegador — la imagen nunca sale de tu máquina.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>iconruler</span><span class="footer__sep">·</span
+      ><span>procesamiento 100% local</span>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
